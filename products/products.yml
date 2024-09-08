@@ -1,0 +1,779 @@
+# Этот файл содержит информацию о продуктах в формате YAML.
+# Каждый продукт представлен как ключ верхнего уровня, а его атрибуты - как вложенный словарь.
+#
+# Поля продукта:
+# - name: Название продукта на русском языке (строка)
+# - calories: Количество калорий на 100 грамм продукта (вещественное число)
+# - proteins: Количество белков на 100 грамм продукта (вещественное число)
+# - fats: Количество жиров на 100 грамм продукта (вещественное число)
+# - carbohydrates: Количество углеводов на 100 грамм продукта (вещественное число)
+# - group: Категория продукта (перечисление ProductCategory)
+# - packageWeight: Вес упаковки продукта в граммах (целое число, по умолчанию 1000)
+# - costPerPackage: Стоимость упаковки продукта, не используется (целое число, по умолчанию 0)
+# - percentage: Процент усваиваемости, не используется (вещественное число, по умолчанию 100.0)
+#
+# Доступные категории продуктов:
+# - Whatever
+# - Grains
+# - Vegetables
+# - Meat
+# - Milk
+# - Dispersed
+# - Drinkable
+# - Sweets
+# - Nuts
+# - TouristShop
+
+
+# This file contains product information in YAML format.
+# Each product is represented as a top-level key, and its attributes are represented as a nested dictionary.
+#
+# Product fields:
+# - name: The name of the product in Russian (string)
+# - calories: The number of calories per 100 grams of the product (float)
+# - proteins: The amount of proteins per 100 grams of the product (float)
+# - fats: The amount of fats per 100 grams of the product (float)
+# - carbohydrates: The amount of carbohydrates per 100 grams of the product (float)
+# - group: The category of the product (ProductCategory enum)
+# - packageWeight: The weight of the product package in grams (integer, default 1000)
+# - costPerPackage: The cost of the product package, not used (integer, default 0)
+# - percentage: not used (float, default 100.0)
+#
+# Available product categories:
+# - Whatever
+# - Grains
+# - Vegetables
+# - Meat
+# - Milk
+# - Dispersed
+# - Drinkable
+# - Sweets
+# - Nuts
+# - TouristShop
+
+
+
+products:
+  Геркулес:
+    calories: 345.0
+    proteins: 12.0
+    fats: 6.0
+    carbohydrates: 65.0
+    group: Grains
+    percentage: 83.0
+  Гречка:
+    calories: 330.0
+    proteins: 13.0
+    fats: 2.0
+    carbohydrates: 68.0
+    group: Grains
+    percentage: 83.0
+  Картофельное пюре:
+    calories: 315.0
+    proteins: 6.1
+    fats: 0.0
+    carbohydrates: 72.3
+    group: Vegetables
+    percentage: 78.4
+  Картофель:
+    calories: 315.0
+    proteins: 6.1
+    fats: 0.0
+    carbohydrates: 72.3
+    group: Vegetables
+    percentage: 78.4
+  Птитим:
+    calories: 360.0
+    proteins: 13.0
+    fats: 2.0
+    carbohydrates: 72.0
+    group: Grains
+    percentage: 87.0
+  Манка:
+    calories: 320.0
+    proteins: 11.0
+    fats: 0.7
+    carbohydrates: 73.0
+    group: Grains
+    percentage: 84.7
+  Пшено:
+    calories: 334.0
+    proteins: 12.0
+    fats: 3.0
+    carbohydrates: 69.3
+    group: Grains
+    percentage: 84.3
+  Рис:
+    calories: 310.0
+    proteins: 20.0
+    fats: 2.0
+    carbohydrates: 51.0
+    group: Grains
+    percentage: 73.0
+  Макароны:
+    calories: 112.0
+    proteins: 3.5
+    fats: 0.4
+    carbohydrates: 23.2
+    group: Grains
+    percentage: 27.1
+  Мясо сублимированное:
+    calories: 565.0
+    proteins: 60.0
+    fats: 36.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 96.0
+  Рыба сублимированная:
+    calories: 65.0
+    proteins: 14.0
+    fats: 1.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 96.0
+  Кальмар пресервы:
+    calories: 106.0
+    proteins: 20.0
+    fats: 2.0
+    carbohydrates: 2.0
+    group: Meat
+    percentage: 96.0
+  Овощи сублимированные:
+    calories: 286.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 286.0
+    group: TouristShop
+    percentage: 96.0
+  Овощи сушеные:
+    calories: 286.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 286.0
+    group: TouristShop
+    percentage: 96.0
+  Грибы сушеные:
+    calories: 282.0
+    proteins: 23.0
+    fats: 6.0
+    carbohydrates: 31.0
+    group: Vegetables
+    percentage: 96.0
+  Тушенка говядина:
+    calories: 220.0
+    proteins: 16.0
+    fats: 15.0
+    carbohydrates: 1.0
+    group: Meat
+    percentage: 32.0
+  Тушенка свинина:
+    calories: 349.0
+    proteins: 15.0
+    fats: 32.2
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 47.2
+  Куриная грудка:
+    calories: 113.0
+    proteins: 24.0
+    fats: 2.0
+    carbohydrates: 0.4
+    group: Meat
+    percentage: 50.0
+  Грибы:
+    calories: 34.0
+    proteins: 3.7
+    fats: 1.7
+    carbohydrates: 1.1
+    group: Vegetables
+    percentage: 6.5
+  Молоко сгущённое:
+    calories: 335.0
+    proteins: 7.0
+    fats: 9.0
+    carbohydrates: 55.0
+    group: Milk
+    percentage: 71.0
+  Молоко сухое:
+    calories: 350.0
+    proteins: 38.0
+    fats: 1.0
+    carbohydrates: 50.0
+    group: Milk
+    percentage: 89.0
+  Масло сливочное:
+    calories: 734.0
+    proteins: 0.4
+    fats: 78.5
+    carbohydrates: 0.5
+    group: Milk
+    percentage: 79.4
+  Масло топленое:
+    calories: 875.0
+    proteins: 0.4
+    fats: 94.0
+    carbohydrates: 0.0
+    group: Milk
+    percentage: 94.4
+  Колбаса:
+    calories: 600.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 100.0
+  Корейка and грудинка:
+    calories: 535.0
+    proteins: 10.0
+    fats: 54.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 64.0
+  Сало:
+    calories: 770.0
+    proteins: 1.8
+    fats: 80.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 81.8
+  Сыр:
+    calories: 360.0
+    proteins: 26.8
+    fats: 27.3
+    carbohydrates: 0.0
+    group: Milk
+    percentage: 54.1
+  Сушеный инжир:
+    calories: 257.0
+    proteins: 3.1
+    fats: 0.8
+    carbohydrates: 57.9
+    group: Vegetables
+    percentage: 100.0
+  Перловка:
+    calories: 320.0
+    proteins: 9.3
+    fats: 1.1
+    carbohydrates: 73.0
+    group: Grains
+    percentage: 83.4
+  Лосось:
+    calories: 144.0
+    proteins: 20.6
+    fats: 6.3
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 26.9
+  томатная паста:
+    calories: 82.0
+    proteins: 4.3
+    fats: 0.5
+    carbohydrates: 19.0
+    group: Vegetables
+    percentage: 23.8
+  Рыбная консерва в масле:
+    calories: 220.0
+    proteins: 19.5
+    fats: 15.8
+    carbohydrates: 0.4
+    group: Meat
+    percentage: 35.7
+  Рыбная консерва в томате:
+    calories: 160.0
+    proteins: 15.0
+    fats: 8.0
+    carbohydrates: 7.0
+    group: Meat
+    percentage: 30.0
+  Шпроты:
+    calories: 364.0
+    proteins: 17.4
+    fats: 32.4
+    carbohydrates: 0.4
+    group: Meat
+    percentage: 50.2
+  Вермишель:
+    calories: 333.0
+    proteins: 10.7
+    fats: 1.3
+    carbohydrates: 74.2
+    group: Grains
+    percentage: 86.2
+  Арахис:
+    calories: 622.0
+    proteins: 26.3
+    fats: 45.2
+    carbohydrates: 9.9
+    group: Nuts
+    percentage: 81.4
+  Харчо:
+    calories: 330.0
+    proteins: 6.5
+    fats: 4.0
+    carbohydrates: 66.0
+    group: Dispersed
+    percentage: 76.5
+  Борщ:
+    calories: 257.0
+    proteins: 8.2
+    fats: 5.8
+    carbohydrates: 42.9
+    group: Dispersed
+    percentage: 56.9
+  Суп куриный:
+    calories: 297.0
+    proteins: 9.0
+    fats: 3.1
+    carbohydrates: 58.2
+    group: Dispersed
+    percentage: 70.3
+  Сухари:
+    calories: 326.0
+    proteins: 11.2
+    fats: 1.7
+    carbohydrates: 69.0
+    group: Whatever
+    percentage: 81.9
+  Хлеб:
+    calories: 236.0
+    proteins: 8.0
+    fats: 1.0
+    carbohydrates: 52.0
+    group: Whatever
+    percentage: 61.0
+  Сахар:
+    calories: 505.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 99.0
+    group: Drinkable
+    percentage: 99.0
+  Халва:
+    calories: 510.0
+    proteins: 10.0
+    fats: 30.0
+    carbohydrates: 43.0
+    group: Sweets
+    percentage: 88.0
+  Кукуруза:
+    calories: 328.0
+    proteins: 8.3
+    fats: 1.2
+    carbohydrates: 71.0
+    group: Grains
+    percentage: 80.5
+  Белая фасоль:
+    calories: 325.0
+    proteins: 20.9
+    fats: 1.8
+    carbohydrates: 64.0
+    group: Vegetables
+    percentage: 86.7
+  Красная фасоль:
+    calories: 325.0
+    proteins: 20.9
+    fats: 1.8
+    carbohydrates: 64.0
+    group: Vegetables
+    percentage: 86.7
+  Шоколад:
+    calories: 510.0
+    proteins: 4.0
+    fats: 29.0
+    carbohydrates: 50.0
+    group: Sweets
+    percentage: 83.0
+  Козинак:
+    calories: 576.0
+    proteins: 14.8
+    fats: 42.6
+    carbohydrates: 34.5
+    group: Sweets
+    percentage: 91.9
+  Конфеты шоколадные:
+    calories: 430.0
+    proteins: 15.0
+    fats: 8.2
+    carbohydrates: 70.0
+    group: Sweets
+    percentage: 100.0
+  Конфеты батончики ротФронт:
+    calories: 530.0
+    proteins: 10.0
+    fats: 29.0
+    carbohydrates: 55.0
+    group: Sweets
+    percentage: 100.0
+  Миндаль:
+    calories: 645.0
+    proteins: 18.6
+    fats: 57.7
+    carbohydrates: 16.2
+    group: Nuts
+    percentage: 92.5
+  Вафли:
+    calories: 430.0
+    proteins: 15.0
+    fats: 8.2
+    carbohydrates: 70.0
+    group: Sweets
+    percentage: 93.2
+  Лимон:
+    calories: 16.0
+    proteins: 0.9
+    fats: 0.1
+    carbohydrates: 3.0
+    group: Vegetables
+    percentage: 4.0
+  Печенье:
+    calories: 410.0
+    proteins: 12.0
+    fats: 10.0
+    carbohydrates: 60.0
+    group: Sweets
+    percentage: 82.0
+  Варенье and джем:
+    calories: 290.0
+    proteins: 0.3
+    fats: 0.0
+    carbohydrates: 68.0
+    group: Sweets
+    percentage: 68.3
+  Кальмары сушёные:
+    calories: 286.0
+    proteins: 62.0
+    fats: 2.0
+    carbohydrates: 5.0
+    group: Meat
+    percentage: 69.0
+  Бананы сушеные:
+    calories: 270.0
+    proteins: 3.3
+    fats: 0.0
+    carbohydrates: 65.0
+    group: Nuts
+    percentage: 67.0
+  Изюм:
+    calories: 260.0
+    proteins: 2.5
+    fats: 0.0
+    carbohydrates: 61.0
+    group: Nuts
+    percentage: 63.5
+  Фучжу:
+    calories: 385.0
+    proteins: 43.0
+    fats: 19.0
+    carbohydrates: 15.0
+    group: Whatever
+    percentage: 77.0
+  Курага:
+    calories: 275.0
+    proteins: 3.2
+    fats: 0.0
+    carbohydrates: 69.0
+    group: Nuts
+    percentage: 72.2
+  Орехи грецкие:
+    calories: 621.0
+    proteins: 13.6
+    fats: 56.0
+    carbohydrates: 11.7
+    group: Nuts
+    percentage: 81.3
+  Финики:
+    calories: 270.0
+    proteins: 3.4
+    fats: 0.0
+    carbohydrates: 67.0
+    group: Nuts
+    percentage: 70.4
+  Чернослив:
+    calories: 269.0
+    proteins: 3.4
+    fats: 0.0
+    carbohydrates: 62.0
+    group: Nuts
+    percentage: 65.4
+  Какао:
+    calories: 373.0
+    proteins: 24.0
+    fats: 17.5
+    carbohydrates: 28.0
+    group: Drinkable
+    percentage: 69.5
+  Кофе:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Drinkable
+    percentage: 0.0
+  Чай:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Drinkable
+    percentage: 0.0
+  Лук:
+    calories: 45.0
+    proteins: 2.0
+    fats: 0.0
+    carbohydrates: 9.0
+    group: Vegetables
+    percentage: 11.0
+  Соус томатный:
+    calories: 80.0
+    proteins: 4.3
+    fats: 0.0
+    carbohydrates: 15.0
+    group: Dispersed
+    percentage: 19.3
+  Чеснок:
+    calories: 45.0
+    proteins: 3.0
+    fats: 0.0
+    carbohydrates: 9.0
+    group: Vegetables
+    percentage: 12.0
+  Пряники:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Sweets
+    percentage: 0.0
+  Батончики сникерс:
+    calories: 507.0
+    proteins: 9.0
+    fats: 28.0
+    carbohydrates: 55.0
+    group: Sweets
+    percentage: 0.0
+  Икра красная:
+    calories: 245.0
+    proteins: 32.0
+    fats: 15.0
+    carbohydrates: 0.0
+    group: Meat
+    percentage: 47.0
+  Чечевица:
+    calories: 352.0
+    proteins: 24.6
+    fats: 1.0
+    carbohydrates: 63.3
+    group: Grains
+    percentage: 27.9
+  Морковь:
+    calories: 32.0
+    proteins: 1.3
+    fats: 0.1
+    carbohydrates: 6.9
+    group: Vegetables
+    percentage: 8.3
+  Кускус:
+    calories: 112.0
+    proteins: 3.8
+    fats: 0.2
+    carbohydrates: 21.8
+    group: Grains
+    percentage: 25.8
+  Сливки:
+    calories: 336.0
+    proteins: 2.1
+    fats: 35.0
+    carbohydrates: 3.2
+    group: Milk
+    percentage: 40.3
+  Оливковое масло:
+    calories: 898.0
+    proteins: 0.0
+    fats: 99.8
+    carbohydrates: 0.0
+    group: Dispersed
+    percentage: 99.8
+  Гель энергетический:
+    calories: 253.0
+    proteins: 0.2
+    fats: 0.0
+    carbohydrates: 63.1
+    group: Whatever
+    percentage: 63.3
+  Соль:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Dispersed
+    percentage: 0.0
+  Вино:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Drinkable
+    percentage: 0.0
+  Крепкий алкоголь:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Drinkable
+    percentage: 0.0
+  Кешью:
+    calories: 600.0
+    proteins: 18.5
+    fats: 48.5
+    carbohydrates: 22.5
+    group: Nuts
+    percentage: 89.5
+  Яичный порошок:
+    calories: 157.0
+    proteins: 12.7
+    fats: 10.9
+    carbohydrates: 0.7
+    group: Whatever
+    percentage: 24.3
+  Булгур:
+    calories: 342.0
+    proteins: 12.3
+    fats: 1.3
+    carbohydrates: 57.6
+    group: Grains
+    percentage: 71.2
+  Лапша Соба Гречневая:
+    calories: 350.0
+    proteins: 15.0
+    fats: 1.0
+    carbohydrates: 71.0
+    group: Grains
+    packageWeight: 300
+  Лапша Удон Пшеничная:
+    calories: 398.0
+    proteins: 12.3
+    fats: 1.4
+    carbohydrates: 59.0
+    group: Grains
+    packageWeight: 300
+  Лапша Фо Рисовая:
+    calories: 350.0
+    proteins: 6.5
+    fats: 0.2
+    carbohydrates: 80.0
+    group: Grains
+    packageWeight: 200
+  Лапша Яичная:
+    calories: 365.0
+    proteins: 11.0
+    fats: 1.4
+    carbohydrates: 75.0
+    group: Grains
+    packageWeight: 250
+  Тушенка курятина Кронидов:
+    calories: 200.0
+    proteins: 15.0
+    fats: 16.0
+    carbohydrates: 0.0
+    group: Meat
+    packageWeight: 250
+    costPerPackage: 190
+  Тушенка говядина Кронидов:
+    calories: 213.0
+    proteins: 15.0
+    fats: 17.0
+    carbohydrates: 0.0
+    group: Meat
+    packageWeight: 250
+    costPerPackage: 215
+  Тушенка свинина Кронидов:
+    calories: 213.0
+    proteins: 15.0
+    fats: 17.0
+    carbohydrates: 0.0
+    group: Meat
+    packageWeight: 250
+    costPerPackage: 215
+  Буженина Кронидов:
+    calories: 257.0
+    proteins: 15.0
+    fats: 16.0
+    carbohydrates: 0.0
+    group: Meat
+    packageWeight: 325
+    costPerPackage: 275
+  Газ:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: TouristShop
+    packageWeight: 450
+  Бензин:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: TouristShop
+    packageWeight: 450
+  Туалетная бумага:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: TouristShop
+    packageWeight: 450
+  Вяленое мясо индейка:
+    calories: 311.0
+    proteins: 56.0
+    fats: 9.0
+    carbohydrates: 0.0
+    group: TouristShop
+    packageWeight: 500
+  Яйцо C1:
+    calories: 157.0
+    proteins: 12.7
+    fats: 11.0
+    carbohydrates: 0.7
+    group: Whatever
+    packageWeight: 600
+  Помидор:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Vegetables
+  Бекон:
+    calories: 442.0
+    proteins: 14.0
+    fats: 44.0
+    carbohydrates: 0.35
+    group: Meat
+    packageWeight: 200
+  Томатная паста:
+    calories: 0.0
+    proteins: 0.0
+    fats: 0.0
+    carbohydrates: 0.0
+    group: Vegetables
+  Кисель:
+    calories: 255.0
+    proteins: 10.0
+    fats: 2.0
+    carbohydrates: 57.0
+    group: Drinkable
+    packageWeight: 150
+  Мяссури:
+    calories: 271.0
+    proteins: 56.0
+    fats: 5.4
+    carbohydrates: 0.4
+    group: TouristShop
+    packageWeight: 500
+  Майонез:
+    calories: 613.0
+    proteins: 67.0
+    fats: 2.1
+    carbohydrates: 0.5
+    group: Dispersed
+    packageWeight: 200
