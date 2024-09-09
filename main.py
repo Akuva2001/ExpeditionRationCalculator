@@ -47,7 +47,7 @@ def main():
     #     for warning in warnings:
     #         print(f"   {exclamation}", warning)
 
-    print(f"\n{green_book} Раскладка:")
+    print(f"{green_book} Раскладка:")
     # Print information for each menu
     for i, menu in enumerate(menus, start=1):
         print(f"{green_book} Секция меню \"{menu.name}\":")

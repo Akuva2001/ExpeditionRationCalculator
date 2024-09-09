@@ -33,7 +33,11 @@ pip install -r requirements.txt
 1. Run the application:
 
 ```
-python main.py --menu menu/sample_menu.yml --products products/products.yml --meals meals/meals.yml --days days/days.yml
+python main.py \
+ --menu menu/sample_menu.yml \
+ --products products/products.yml \
+ --meals meals/meals.yml \
+ --days days/days.yml
 ```
 
 2. The application will output the meal plan, a list of purchases for each menu section separately, and a list of purchases for all menus combined.
