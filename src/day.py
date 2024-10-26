@@ -11,18 +11,20 @@ class Day:
     breakfast: Meal
     lunch: Meal
     dinner: Meal
+    everyday: Meal
     calories: float = 0
     proteins: float = 0
     fats: float = 0
     carbohydrates: float = 0
     weight: float = 0
+    people_count: int = 1
 
     def __post_init__(self):
-        self.calories = self.breakfast.calories + self.lunch.calories + self.dinner.calories
-        self.proteins = self.breakfast.proteins + self.lunch.proteins + self.dinner.proteins
-        self.fats = self.breakfast.fats + self.lunch.fats + self.dinner.fats
-        self.carbohydrates = self.breakfast.carbohydrates + self.lunch.carbohydrates + self.dinner.carbohydrates
-        self.weight = self.breakfast.weight + self.lunch.weight + self.dinner.weight
+        self.calories = self.breakfast.calories + self.lunch.calories + self.dinner.calories + self.everyday.calories
+        self.proteins = self.breakfast.proteins + self.lunch.proteins + self.dinner.proteins + self.everyday.proteins
+        self.fats = self.breakfast.fats + self.lunch.fats + self.dinner.fats + self.everyday.fats
+        self.carbohydrates = self.breakfast.carbohydrates + self.lunch.carbohydrates + self.dinner.carbohydrates + self.everyday.carbohydrates
+        self.weight = self.breakfast.weight + self.lunch.weight + self.dinner.weight + self.everyday.weight
 
     def check_rules(self, rules: DailyNorms) -> List[str]:
         warnings = []
@@ -40,7 +42,7 @@ class Day:
 
 
 
-def load_days(filename: str, meals: dict[str, Meal]) -> dict[str, Day]:
+def load_days(filename: str, meals: dict[str, Meal], everyday: Meal) -> dict[str, Day]:
     with open(filename) as f:
         days_data = yaml.safe_load(f)
 
@@ -55,6 +57,6 @@ def load_days(filename: str, meals: dict[str, Meal]) -> dict[str, Day]:
             raise ValueError(f"Invalid meal in day: {day_name}, meal_name: {day_data['lunch']}, day_data: {day_data}")
         if not dinner:
             raise ValueError(f"Invalid meal in day: {day_name}, meal_name: {day_data['dinner']}, day_data: {day_data}")
-        days[day_name] = Day(day_name, breakfast, lunch, dinner)
+        days[day_name] = Day(day_name, breakfast, lunch, dinner, everyday)
 
     return days

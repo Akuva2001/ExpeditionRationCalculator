@@ -1,7 +1,7 @@
 import argparse
 import yaml
 from src.products import load_products
-from src.meals import load_meals
+from src.meals import load_meals, load_everyday
 from src.menus import (load_menus,
                        get_bom_for_menus, calculate_total_weight,
                        group_products_by_category, print_grouped_products)
@@ -14,6 +14,7 @@ def main():
     parser.add_argument("--products", default="products/products.yml", help="Path to the products file.")
     parser.add_argument("--meals", default="meals/meals.yml", help="Path to the meals file.")
     parser.add_argument("--days", default="days/days.yml", help="Path to the days file.")
+    parser.add_argument("--everyday", default="meals/everyday.yml", help="Path to the everyday products file.")
     args = parser.parse_args()
 
     green_book = chr(0x1F4D7)
@@ -28,8 +29,11 @@ def main():
     # Load meals
     meals = load_meals(args.meals, products)
 
+    # Load everyday products
+    everyday = load_everyday(args.everyday, products)
+
     # Load days
-    days = load_days(args.days, meals)
+    days = load_days(args.days, meals, everyday)
 
     # Load daily norms
     daily_norms = load_daily_norms(args.menu)

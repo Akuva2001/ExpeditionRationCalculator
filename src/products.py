@@ -46,13 +46,14 @@ class Product:
 
 
 
-def load_products(filename):
+def load_products(filename, products: dict[str, Product] = {}):
     with open(filename, 'r') as file:
         data = yaml.safe_load(file)
-
-    products = {}
+    
     for name, details in data['products'].items():
         product = Product(name, **details)
         products[name] = product
 
     return products
+
+

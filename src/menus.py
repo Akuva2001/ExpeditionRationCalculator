@@ -55,7 +55,7 @@ def get_bom_for_menus(menus: List[Menu]) -> dict:
     bom = {}
     for menu in menus:
         for day in menu.days:
-            for meal in [day.breakfast, day.lunch, day.dinner]:
+            for meal in [day.breakfast, day.lunch, day.dinner, day.everyday]:
                 for product, quantity in meal.products:
                     bom[product.name] = bom.get(product.name, 0) + quantity * menu.people_count
     return bom

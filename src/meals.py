@@ -21,11 +21,10 @@ class Meal:
             self.carbohydrates += product.carbohydrates * quantity / 100
             self.weight += product.packageWeight * quantity / 1000
 
-def load_meals(filename: str, products: dict[str, Product]) -> dict[str, Meal]:
+def load_meals(filename: str, products: dict[str, Product], meals: dict[str, Meal] = {}) -> dict[str, Meal]:
     with open(filename) as f:
         meals_data = yaml.safe_load(f)["meals"]
     
-    meals = {}
     for meal_name, meal_data in meals_data.items():
         meal_products = []
         for product_name, quantity in meal_data.items():
@@ -35,3 +34,17 @@ def load_meals(filename: str, products: dict[str, Product]) -> dict[str, Meal]:
                 raise ValueError(f"Invalid product: {product_name}")
         meals[meal_name] = Meal(meal_name, meal_products)
     return meals
+
+
+def load_everyday(filename: str, products: dict[str, Product]) -> Meal:
+    with open(filename, 'r', encoding='utf-8') as f:
+        everyday_data = yaml.safe_load(f)
+    
+    meal_products = []
+    for product_name, quantity in everyday_data.items():
+        if product_name in products:
+            meal_products.append((products[product_name], quantity))
+        else:
+            raise ValueError(f"Invalid product: {product_name}")
+    
+    return Meal(name='каждый день', products=meal_products)
