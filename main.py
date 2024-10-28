@@ -1,12 +1,11 @@
 import argparse
-import yaml
 from src.products import load_products
 from src.meals import load_meals, load_everyday
 from src.menus import (load_menus,
                        get_bom_for_menus, calculate_total_weight,
                        group_products_by_category, print_grouped_products)
 from src.day import load_days
-from src.dailyNorms import load_daily_norms
+from src.daily_norms import load_daily_norms
 
 def main():
     parser = argparse.ArgumentParser(description="Generate a meal plan.")
@@ -69,10 +68,10 @@ def main():
 
         # Print meals for each day in the menu# Print meals for each day in the menu
         for j, day in enumerate(menu.days, start=1):
-            print(f"  Меню на ночёвку {j}:")
-            print(f"    ужин:    {day.dinner.name} ({', '.join(f'{product.name} {quantity * menu.people_count:.0f}' for product, quantity in day.dinner.products)})")
-            print(f"    завтрак: {day.breakfast.name} ({', '.join(f'{product.name} {quantity * menu.people_count:.0f}' for product, quantity in day.breakfast.products)})")
-            print(f"    перекус: {day.lunch.name} ({', '.join(f'{product.name} {quantity * menu.people_count:.0f}' for product, quantity in day.lunch.products)})")
+            print(f"  Меню на ночёвку {j}, {day.people_count} человек:")
+            print(f"    ужин:    {day.dinner.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.dinner.products)})")
+            print(f"    завтрак: {day.breakfast.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.breakfast.products)})")
+            print(f"    перекус: {day.lunch.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.lunch.products)})")
 
         print()
 
