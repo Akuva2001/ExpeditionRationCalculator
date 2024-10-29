@@ -1,95 +1,48 @@
-import argparse
-from src.products import load_products
-from src.meals import load_meals, load_everyday
-from src.menus import (load_menus,
-                       get_bom_for_menus, calculate_total_weight,
-                       group_products_by_category, print_grouped_products)
-from src.day import load_days
-from src.daily_norms import load_daily_norms
+"""
+main.py
+
+This script serves as the entry point for generating meal plans based on predefined
+menus, meals, days, and product data. It loads configurations from YAML files or dictionaries,
+validates the data, calculates nutritional information, and generates a Bill of Materials (BOM)
+for shopping purposes.
+
+Functionality:
+    - Parses command-line arguments for configuration file paths and debug mode.
+    - Loads and validates product, meal, day, daily norms, and menu data.
+    - Checks daily nutritional rules and provides warnings if norms are not met.
+    - Calculates total nutritional values and weights for menus.
+    - Generates and prints categorized shopping lists (BOM) for individual menus and all menus combined.
+    - Supports programmatic configuration loading for testing purposes.
+"""
+
+from src.config_loader import parse_arguments, load_configuration, load_configuration_from_dict
+from src.display import display_menu_info, display_bom
+from src.menus import calculate_total_weight
+
+
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate a meal plan.")
-    parser.add_argument("--menu", default="menu/sample_menu.yml", help="Path to the menu file.")
-    parser.add_argument("--products", default="products/products.yml", help="Path to the products file.")
-    parser.add_argument("--meals", default="meals/meals.yml", help="Path to the meals file.")
-    parser.add_argument("--days", default="days/days.yml", help="Path to the days file.")
-    parser.add_argument("--everyday", default="meals/everyday.yml", help="Path to the everyday products file.")
-    args = parser.parse_args()
+    """
+    The main function orchestrates the loading of configurations, validation, and output generation
+    for the meal planning application. It handles command-line arguments, loads data from YAML files
+    or dictionaries, checks nutritional rules, and generates shopping lists.
+    """
+    # Parse command-line arguments
+    args = parse_arguments()
 
-    green_book = chr(0x1F4D7)
-    blue_book = chr(0x1F4D8)
-    exclamation = chr(0x2757)
-    warning_sign = chr(0x26A0)
+    # Load all configurations
+    config = load_configuration(args)
 
+    # Display menu information and check nutritional rules
+    display_menu_info(config.menus, config.daily_norms)
 
-    # Load products
-    products = load_products(args.products)
+    # Display Bill of Materials (BOM)
+    display_bom(config.menus, config.products)
 
-    # Load meals
-    meals = load_meals(args.meals, products)
+    # Calculate and display total weight of all menus
+    total_weight = calculate_total_weight(config.menus)
+    print(f"Общий вес: {total_weight:.0f} кг")
 
-    # Load everyday products
-    everyday = load_everyday(args.everyday, products)
-
-    # Load days
-    days = load_days(args.days, meals, everyday)
-
-    # Load daily norms
-    daily_norms = load_daily_norms(args.menu)
-
-    # Load menus
-    menus = load_menus(args.menu, days)
-
-        
-    # # Check rules
-    # print("Список уникальных дней и замечаний по ним:")
-    # for name, day in days.items():
-    #     print(f"  День: {name}, вес на человека: {day.weight:.0f} г.")
-    #     warnings = day.check_rules(daily_norms)
-    #     # Print warnings
-    #     for warning in warnings:
-    #         print(f"   {exclamation}", warning)
-
-    print(f"{green_book} Раскладка:")
-    # Print information for each menu
-    for i, menu in enumerate(menus, start=1):
-        print(f"{green_book} Секция меню \"{menu.name}\":")
-        print(f"  веса дней {[f'{day.weight:.0f}' for day in menu.days]}, общий вес {menu.total_weight:.0f}")
-
-        # Check rules for each day in the menu
-        for day in menu.days:
-            warnings = day.check_rules(daily_norms)
-            for warning in warnings:
-                print(f"  {exclamation} {warning}")
-
-        # Print warning count
-        warning_count = sum(len(day.check_rules(daily_norms)) for day in menu.days)
-        print(f"{warning_sign} {warning_count}")
-
-        # Print meals for each day in the menu# Print meals for each day in the menu
-        for j, day in enumerate(menu.days, start=1):
-            print(f"  Меню на ночёвку {j}, {day.people_count} человек:")
-            print(f"    ужин:    {day.dinner.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.dinner.products)})")
-            print(f"    завтрак: {day.breakfast.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.breakfast.products)})")
-            print(f"    перекус: {day.lunch.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.lunch.products)})")
-
-        print()
-
-    # Print BOM for each menu
-    print(f"\n{blue_book} Список покупок для каждой секции меню по отедльности:")
-    for menu in menus:
-        print(f"{blue_book} Меню: {menu.name}, вес: {menu.total_weight:.0f}")
-        bom = get_bom_for_menus(menus)
-        grouped_products = group_products_by_category(bom, products)
-        print_grouped_products(grouped_products, indent=1)
-        print()
-
-    print(f"\n{green_book}{green_book} Список покупок для всех меню вместе:")
-    bom = get_bom_for_menus(menus)
-    grouped_products = group_products_by_category(bom, products)
-    print_grouped_products(grouped_products, indent=0)
-        
-    print(f"Общий вес: {calculate_total_weight(menus):.0f}")
 
 if __name__ == "__main__":
     main()

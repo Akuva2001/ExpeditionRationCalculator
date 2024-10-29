@@ -26,12 +26,13 @@ Functions:
 """
 
 import yaml
-from dataclasses import dataclass, field, replace
-from typing import List, Dict, Any
+from dataclasses import dataclass, replace
+from typing import List, Dict
 import os
 
-from .day import Day, DailyNorms
+from .day import Day
 from .products import Product, productCategoryMap, productGroups
+
 
 
 @dataclass

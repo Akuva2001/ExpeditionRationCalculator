@@ -8,12 +8,15 @@ the Bill of Materials (BOM) in a readable format for the meal planning applicati
 import yaml
 from typing import Dict, List
 from .menus import Menu
-from .products import Product, productCategoryMap, productGroups
+from .products import Product, productGroups
+from .daily_norms import DailyNorms
 from .bom_generator import get_bom_for_menus, group_products_by_category
+from .special_symbols import green_book, blue_book, exclamation, warning_sign
+from .utilities import number_to_emoji
 
 
 
-def display_menu_info(menus: List[Menu], daily_norms: 'DailyNorms', green_book: str, exclamation: str, warning_sign: str):
+def display_menu_info(menus: List[Menu], daily_norms: DailyNorms):
     """
     Displays information about each menu, including nutritional values and any warnings.
 
@@ -39,18 +42,20 @@ def display_menu_info(menus: List[Menu], daily_norms: 'DailyNorms', green_book: 
         # Print warning count
         warning_count = sum(len(day.check_rules(daily_norms)) for day in menu.days)
         print(f"{warning_sign} {warning_count} предупреждений")
+        print()
 
         # Print meals for each day in the menu
         for j, day in enumerate(menu.days, start=1):
-            print(f"  Меню на ночёвку {j}, {day.people_count} человек:")
+            print(f"{number_to_emoji(j, 2)}  Меню на ночёвку {j}, {day.people_count} человек: {day.name}")
             print(f"    ужин:    {day.dinner.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.dinner.products)})")
             print(f"    завтрак: {day.breakfast.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.breakfast.products)})")
             print(f"    перекус: {day.lunch.name} ({', '.join(f'{product.name} {quantity * day.people_count:.0f}' for product, quantity in day.lunch.products)})")
+            print()
 
         print()
 
 
-def display_bom(menus: List[Menu], products: Dict[str, Product], blue_book: str):
+def display_bom(menus: List[Menu], products: Dict[str, Product]):
     """
     Displays the Bill of Materials (BOM) for each menu and for all menus combined.
 
@@ -69,7 +74,7 @@ def display_bom(menus: List[Menu], products: Dict[str, Product], blue_book: str)
         print()
 
     # Print combined BOM for all menus
-    print(f"\n{blue_book} Список покупок для всех меню вместе:")
+    print(f"\n{green_book}{green_book} Список покупок для всех меню вместе:")
     combined_bom = get_bom_for_menus(menus)
     grouped_combined = group_products_by_category(combined_bom, products)
     print_grouped_products(grouped_combined, indent=0)
@@ -86,14 +91,11 @@ def print_grouped_products(grouped_products: Dict[str, Dict[str, float]], indent
         indent (int, optional): The indentation level for the printed output. Defaults to 0.
     """
     for pg in productGroups:
-        print(f"{'  ' * indent}{pg}:")
-        pr_d = grouped_products.get(pg, {})
-        if pr_d:
-            dump = yaml.dump(pr_d, default_flow_style=False, allow_unicode=True)
-            lines = dump.splitlines()
-            if indent > 0:
-                lines = [f"{'  ' * indent}{line}" for line in lines]
-            dump = '\n'.join(lines)
-            print(dump)
-        else:
-            print("  Нет продуктов")
+        print(f"{'  '*indent}{pg}:")
+        pr_d = grouped_products[pg]
+        for _ in range(indent+1):
+            pr_d = {"some": pr_d}
+        dump = yaml.dump(pr_d, default_flow_style=False, allow_unicode=True)
+        lines = dump.splitlines()
+        dump = '\n'.join(lines[indent+1:])
+        print(dump)

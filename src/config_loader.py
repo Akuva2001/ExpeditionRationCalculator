@@ -7,14 +7,14 @@ It ensures the integrity and validity of the loaded configurations.
 """
 
 import argparse
-from typing import Dict
+from typing import Dict, List
 import sys
 
 from .products import Product, load_products
-from .meals import load_meals, load_everyday
+from .meals import load_meals, load_everyday, Meal
 from .day import Day, load_days
 from .daily_norms import DailyNorms, load_daily_norms
-from .menus import load_menus
+from .menus import load_menus, Menu
 from .config import MealPlannerConfig
 
 
@@ -59,7 +59,7 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_configuration(args: argparse.Namespace, debug: bool) -> MealPlannerConfig:
+def load_configuration(args: argparse.Namespace) -> MealPlannerConfig:
     """
     Loads all necessary configurations for meal planning.
 
@@ -73,6 +73,7 @@ def load_configuration(args: argparse.Namespace, debug: bool) -> MealPlannerConf
     Raises:
         SystemExit: If any of the configuration loading steps fail.
     """
+    debug = args.debug
     try:
         # Load products
         if debug:
@@ -133,7 +134,7 @@ def load_configuration(args: argparse.Namespace, debug: bool) -> MealPlannerConf
         sys.exit(1)
 
 
-def load_configuration_from_dict(config_dict: Dict[str, str], debug: bool = False) -> MealPlannerConfig:
+def load_configuration_from_dict(config_dict: Dict[str, str]) -> MealPlannerConfig:
     """
     Loads all necessary configurations for meal planning from a dictionary.
 
@@ -162,7 +163,7 @@ def load_configuration_from_dict(config_dict: Dict[str, str], debug: bool = Fals
         meals = config_dict['meals']
         days = config_dict['days']
         everyday = config_dict['everyday']
-        debug = debug
+        debug = config_dict.get('debug', False)
 
     args_instance = Args()
-    return load_configuration(args_instance, debug)
+    return load_configuration(args_instance)
