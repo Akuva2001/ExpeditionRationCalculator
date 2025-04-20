@@ -72,12 +72,12 @@ def display_bom(menus: List[Menu], products: Dict[str, Product]):
         grouped_products = group_products_by_category(bom, products)
         print_grouped_products(grouped_products, indent=1)
         print()
-
-    # Print combined BOM for all menus
-    print(f"\n{green_book}{green_book} Список покупок для всех меню вместе:")
-    combined_bom = get_bom_for_menus(menus)
-    grouped_combined = group_products_by_category(combined_bom, products)
-    print_grouped_products(grouped_combined, indent=0)
+    if len(menus) > 1:
+        # Print combined BOM for all menus
+        print(f"\n{green_book}{green_book} Список покупок для всех меню вместе:")
+        combined_bom = get_bom_for_menus(menus)
+        grouped_combined = group_products_by_category(combined_bom, products)
+        print_grouped_products(grouped_combined, indent=0)
 
 
 def print_grouped_products(grouped_products: Dict[str, Dict[str, float]], indent: int = 0):
