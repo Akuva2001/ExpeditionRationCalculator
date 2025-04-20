@@ -41,7 +41,7 @@ def main():
 
     # Calculate and display total weight of all menus
     total_weight = calculate_total_weight(config.menus)
-    print(f"Общий вес: {total_weight:.0f} кг")
+    print(f"Общий вес: {total_weight/1000:.1f} кг")
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ def display_menu_info(menus: List[Menu], daily_norms: DailyNorms):
     # Print information for each menu
     for i, menu in enumerate(menus, start=1):
         print(f"{green_book} Секция меню \"{menu.name}\":")
-        print(f"  Веса дней {[f'{day.weight:.0f}' for day in menu.days]}, общий вес {menu.total_weight:.0f} кг")
+        print(f"  Веса дней {[f'{day.weight/1000:.1f}' for day in menu.days]}, общий вес {menu.total_weight/1000:.1f} кг")
 
         # Check rules for each day in the menu
         for day in menu.days:
@@ -67,7 +67,7 @@ def display_bom(menus: List[Menu], products: Dict[str, Product]):
     # Print BOM for each menu
     print(f"\n{blue_book} Список покупок для каждой секции меню по отдельности:")
     for menu in menus:
-        print(f"{blue_book} Меню: {menu.name}, вес: {menu.total_weight:.0f} кг")
+        print(f"{blue_book} Меню: {menu.name}, вес: {menu.total_weight/1000:.1f} кг")
         bom = get_bom_for_menus([menu])
         grouped_products = group_products_by_category(bom, products)
         print_grouped_products(grouped_products, indent=1)
